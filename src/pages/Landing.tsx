@@ -1,12 +1,13 @@
-import logo from "../assets/images/logo.svg";
 import main from "../assets/images/main.svg";
 import styled from "styled-components";
+import { Logo } from "../components";
+import { Link } from "react-router-dom";
 
 const Landing = () => {
   return (
     <Wrapper>
       <nav>
-        <img src={logo} alt="jobtracker logo" className="logo" />
+        <Logo />
       </nav>
 
       <div className="container page">
@@ -21,7 +22,9 @@ const Landing = () => {
             job title, company name, location, and the status of each
             application.
           </p>
-          <button className="btn btn-hero">Login/Register</button>
+          <Link to="/register" className="btn btn-hero">
+            Login/Register
+          </Link>
         </div>
         <img src={main} alt="job hunt" className="img main-img" />
       </div>
