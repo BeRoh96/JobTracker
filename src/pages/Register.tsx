@@ -1,4 +1,4 @@
-import { Logo } from "../components";
+import { Logo, FormRow } from "../components";
 import styled from "styled-components";
 import { useState } from "react";
 
@@ -13,20 +13,61 @@ const Register = () => {
   const [values, setValues] = useState(inititialState);
 
   const handleChange = (e: React.FormEvent) => {
-    console.log(e.target);
+    const element = e.currentTarget as HTMLInputElement;
+    const name = element.name;
+    const value = element.value;
+
+    setValues({ ...values, [name]: value });
   };
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    console.log(e.target);
+    const { name, email, password, isMember } = values;
+
+    if (!email || !password || (!isMember && !name)) {
+      console.log("Please provide all values");
+    }
+  };
+
+  const toggleMember = () => {
+    setValues({ ...values, isMember: !values.isMember });
   };
 
   return (
     <Wrapper className="full-page">
       <form className="form" onSubmit={onSubmit}>
         <Logo />
-        <h3>Login</h3>
+        <h3>{values.isMember ? "Login" : "Register"}</h3>
+        {!values.isMember && (
+          <FormRow
+            type="text"
+            name="name"
+            value={values.name}
+            handleChange={handleChange}
+          />
+        )}
+        <FormRow
+          type="email"
+          name="email"
+          value={values.email}
+          handleChange={handleChange}
+        />
+        <FormRow
+          type="password"
+          name="password"
+          value={values.password}
+          handleChange={handleChange}
+        />
+        <button type="submit" className="btn btn-block">
+          submit
+        </button>
+        <p>
+          {values.isMember ? "Not a member yet?" : "Already a member ?"}
+          <button type="button" onClick={toggleMember} className="member-btn">
+            {values.isMember ? "Register" : "Login"}
+          </button>
+        </p>
       </form>
     </Wrapper>
   );
