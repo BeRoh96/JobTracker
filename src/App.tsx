@@ -1,7 +1,11 @@
-import { useState } from "react";
+import Landing from "./pages/Landing";
 
 function App() {
-  return <h1>Job Tracker</h1>;
+  return (
+    <div>
+      <Landing />
+    </div>
+  );
 }
 
 export default App;
