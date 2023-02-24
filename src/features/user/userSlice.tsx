@@ -1,7 +1,14 @@
-import React from "react";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { Toast } from "react-toastify";
 
-const userSlice = () => {
-  return <div>userSlice</div>;
+const initialState = {
+  isLoading: false,
+  user: null,
 };
 
-export default userSlice;
+const userSlice = createSlice({
+  name: "user",
+  initialState,
+});
+
+export default userSlice.reducer;
