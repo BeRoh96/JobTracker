@@ -15,7 +15,9 @@ const inititialState = {
 const Register = () => {
   const [values, setValues] = useState(inititialState);
 
-  const { user, isLoading } = useSelector((store) => store.user);
+  const { user, isLoading } = useSelector(
+    (store: { user: string; isLoading: boolean }) => store.user
+  );
   const dispatch = useDispatch();
 
   const handleChange = (e: React.FormEvent) => {
